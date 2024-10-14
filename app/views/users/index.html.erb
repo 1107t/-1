@@ -1,0 +1,25 @@
+<% provide(:title, 'All Users') %>
+<h1>ユーザー一覧</h1>
+
+<div class="col-md-10 col-md-offset-1">
+
+  <table class="table table-condensed table-hover" id="table-users">
+    <thead>
+      <tr>
+        <th><%= User.human_attribute_name :name %></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, user %></td>
+        <td><%= link_to '基本情報編集', edit_basic_info_user_path(user), remote: true, data: { turbo_frame: 'modal' }, class: "btn btn-success" %></td>
+        <td><%= link_to "削除", user, data: { turbo_method: :delete, confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </table>
+  
+</div>
+
+<div id="edit-basic-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
