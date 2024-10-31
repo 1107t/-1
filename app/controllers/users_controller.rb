@@ -2,12 +2,15 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :correct_user, only: [:edit, :update]
+  before_action :set_one_month, only: :show
   
-  def index
-    @users = User.all
-  end
+  
 
   def show
+    @user = User.find(params[:id])
+    @first_day = Date.current.beginning_of_month
+    @last_day = Date.current.end_of_month
+    @attendances = @user.attendances.where(worked_on: @first_day..@last_day)
   end
 
   def new
@@ -45,14 +48,64 @@ class UsersController < ApplicationController
 
   def edit_basic_info
     @user = User.find(params[:id])
-  
-    respond_to do |format|
-      format.html { render partial: 'users/edit_basic_info', locals: { user: @user } }
-      format.turbo_stream
-    end
   end
 
   def update_basic_info
+  end
+  
+  def muscle_parts_page
+    @user = User.find(params[:id])
+  end  
+  
+  def training_abs
+    @users = User.all
+  end
+
+  def training_abs_modal
+    @user = User.find(params[:id])
+  end
+
+  def training_arms
+    @users = User.all
+  end
+
+  def training_arms_modal
+    @user = User.find(params[:id])
+  end  
+
+  def update_arms_modal 
+  end
+ 
+  def training_back
+    @users = User.all
+  end 
+
+  def training_back_modal
+    @user = User.find(params[:id])
+  end 
+
+  def training_chest
+    @users = User.all
+  end 
+
+  def training_chest_modal
+    @user = User.find(params[:id])
+  end
+  
+  def training_shoulder
+    @users = User.all
+  end 
+
+  def training_shoulder_modal
+    @user = User.find(params[:id])
+  end
+
+  def training_thighs
+    @users = User.all
+  end 
+
+  def training_thighs_modal
+    @user = User.find(params[:id])
   end
 
   private

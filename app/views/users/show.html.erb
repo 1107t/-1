@@ -1,15 +1,20 @@
-<% provide(:title, "@user.name") %>
+<% provide(:title, @user.name) %>
 <h1><%= @user.name %></h1>
+
 <div>
   <table class="table table-bordered table-condensed user-table">
     <tr>
       <td>時間管理表</td>
     </tr>
-
     <tr>
       <td>トレーニング種目一覧</td>
     </tr>
   </table>
+</div>
+
+<div class="btn-users-show">
+  <%= link_to "⇦ 前月へ", user_path(date: @first_day.prev_month), class: "btn btn-info" %>
+  <%= link_to "次月へ ⇨", user_path(date: @first_day.next_month), class: "btn btn-info" %>
 </div>
 
 <div>
@@ -17,19 +22,30 @@
     <thead>
       <tr>
         <th>日付</th>
+        <th>曜日</th>
         <th>トレーニング部位</th>
         <th>一覧選択/追加</th>
       </tr>
     </thead>
-
     <tbody>
-      
+      <% if @attendances.present? %>
+        <% @attendances.each do |attendance| %>
+          <tr>
+            <% if Date.current == attendance.worked_on && attendance.started_at.nil? %>
+              <td><%= attendance.worked_on || "日付なし" %></td>
+              <td><%= $days_of_the_week[attendance.worked_on&.wday] || "曜日なし" %></td>
+              <td>
+                  <%= link_to "マイページ", "#", data: { turbo_method: :patch }, class: "btn btn-primary btn-attendance" %>
+              </td>
+              <td><%= link_to "一覧表示/追加", muscle_parts_page_user_path(@user), data: { turbo_method: :patch }, class: "btn btn-primary btn-attendance" %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% else %>
         <tr>
-          <td></td>
-          <td></td>
-          <td>一覧選択/追加</td>
+          <td colspan="4">出席データがありません。</td>
         </tr>
-      
+      <% end %>
     </tbody>
   </table>
 </div>
