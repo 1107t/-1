@@ -1,0 +1,248 @@
+<%# app/views/users/workout_menu.html.erb %>
+<% provide(:title, "トレーニングメニュー") %>
+
+<style>
+  .workout-container {
+    background-color: #f5f7fa;
+    min-height: 100vh;
+    padding: 2rem 0;
+  }
+
+  .content-wrapper {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .page-title {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .user-info {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #f8fafd;
+    border-radius: 8px;
+  }
+
+  .user-info-item {
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+  }
+
+  .body-part-section {
+    margin-bottom: 2rem;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+
+  .body-part-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e9ecef;
+  }
+
+  .body-part-title {
+    color: #2c3e50;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .menu-content {
+    white-space: pre-line;
+    color: #2c3e50;
+    line-height: 1.6;
+  }
+
+  .training-history {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef;
+  }
+
+  .history-title {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+
+  .history-list {
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #f8fafd;
+    border-radius: 6px;
+    padding: 0.5rem;
+  }
+
+  .history-item {
+    padding: 0.8rem;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 0.9rem;
+  }
+
+  .history-date {
+    color: #6c757d;
+    font-size: 0.8rem;
+  }
+
+    .history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .history-delete-btn {
+    padding: 0.2rem 0.5rem;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .history-delete-btn:hover {
+    background-color: #c0392b;
+    text-decoration: none;
+    color: white;
+  }
+
+  .history-content {
+    padding-left: 0.5rem;
+    border-left: 2px solid #e9ecef;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .btn-edit {
+    background-color: #2ecc71;
+    border-color: #27ae60;
+    color: white;
+  }
+
+  .btn-edit:hover {
+    background-color: #27ae60;
+  }
+
+  .btn-record {
+    background-color: #3498db;
+    border-color: #2980b9;
+    color: white;
+  }
+
+  .btn-record:hover {
+    background-color: #2980b9;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content {
+    position: relative;
+    background-color: white;
+    margin: 10% auto;
+    padding: 2rem;
+    max-width: 500px;
+    border-radius: 8px;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .content-wrapper {
+      padding: 1rem;
+    }
+
+    .modal-content {
+      margin: 5% 1rem;
+    }
+  }
+</style>
+<div class="workout-container">
+  <div class="container">
+    <div class="content-wrapper">
+      <h1 class="page-title">トレーニングメニュー</h1>
+
+      <div class="user-info">
+        <div class="user-info-item">
+          <strong>名前:</strong> <%= @user.name %>
+        </div>
+        
+      </div>
+
+      <% parts = { 
+        chest: "胸部（Chest）", 
+        back: "背中（Back）", 
+        shoulder: "肩（Shoulder）",
+        arms: "腕（Arms）", 
+        abs: "腹筋（Abs）", 
+        thighs: "太もも（Thighs）"
+      } %>
+
+      <% parts.each do |part, title| %>
+        <section class="body-part-section" id="<%= part %>-section">
+          <div class="body-part-header">
+            <h2 class="body-part-title"><%= title %></h2>
+            
+          </div>
+
+          <div class="menu-content">
+            <% if @user.send(part).present? %>
+              <%= @user.send(part) %>
+            <% else %>
+              <p class="empty-menu">メニューが未設定です</p>
+            <% end %>
+          </div>
+        </section>
+      <% end %>
+    </div>
+  </div>
+</div>
+

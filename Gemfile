@@ -34,6 +34,7 @@ gem 'rails', '~> 7.0'
 gem 'turbo-rails'
 gem 'rails-i18n'
 gem 'jquery-rails'
+gem 'holiday_japan'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

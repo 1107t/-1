@@ -1,0 +1,40 @@
+<div class="user-list-container">
+  <div class="container">
+    <div class="content-wrapper">
+      <h1 class="page-title">マイページ</h1>
+
+      <div class="table-responsive">
+        <table class="table table-hover table-custom">
+          <thead>
+            <tr>
+              <th>ユーザー名</th>
+              <th class="text-center">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td class="user-name">
+                  <%= link_to user.name, user_path(user) %>
+                </td>
+                <td class="text-center">
+                  <% if current_user == user %>
+                    <%= link_to '基本情報編集', workout_menu_user_path(user),
+                        data: { turbo_frame: 'modal' }, 
+                        class: "btn btn-edit text-white" %>
+                    <%= link_to "削除", user, 
+                        data: { 
+                          turbo_method: :delete,
+                          turbo_confirm: "削除してよろしいですか？"
+                        },
+                        class: "btn btn-delete text-white" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
