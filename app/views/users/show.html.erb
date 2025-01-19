@@ -1,0 +1,168 @@
+<% provide(:title, @user.name) %>
+
+<style>
+.page-container {
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.content-wrapper {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.user-name {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.month-navigation {
+  background-color: #ffffff;
+  padding: 1.2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.month-text {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0 1.5rem;
+}
+
+.nav-btn {
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #3498db;
+  border: 2px solid #3498db;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: #3498db;
+  color: white;
+}
+
+.table-custom {
+  margin-top: 1rem;
+}
+
+.table-custom thead th {
+  background-color: #f8fafd;
+  color: #2c3e50;
+  font-weight: 600;
+  padding: 1rem;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.table-custom tbody td {
+  padding: 0.8rem;
+  vertical-align: middle;
+}
+
+.sunday {
+  color: #e74c3c;
+}
+
+.saturday {
+  color: #3498db;
+}
+
+.holiday {
+  color: #e74c3c;
+  background-color: #fdf2f2;
+}
+
+.current-day {
+  background-color: #f4f9ff;
+}
+
+.btn-menu {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.btn-menu:hover {
+  background-color: #2980b9;
+  color: white;
+}
+</style>
+
+<div class="page-container">
+  <div class="container">
+    <div class="content-wrapper">
+      <h1 class="user-name text-center"><%= @user.name %></h1>
+
+      <%# Month Navigation %>
+      <div class="month-navigation d-flex justify-content-center align-items-center">
+        <%= link_to user_path(date: @first_day.prev_month), class: "nav-btn text-decoration-none" do %>
+          ＜ 前月
+        <% end %>
+        <span class="month-text"><%= @first_day.strftime('%Y年%m月') %></span>
+        <%= link_to user_path(date: @first_day.next_month), class: "nav-btn text-decoration-none" do %>
+          次月 ＞
+        <% end %>
+      </div>
+
+      <%# Workout Table %>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover table-custom">
+          <thead>
+            <tr>
+              <th width="20%">日付</th>
+              <th width="20%">曜日</th>
+              <th width="30%">トレーニング部位</th>
+              <th width="30%">一覧選択/追加</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% (@first_day..@first_day.end_of_month).each do |date| %>
+              <% 
+                css_class = case date.wday
+                          when 0
+                            'sunday'
+                          when 6
+                            'saturday'
+                          end
+                css_class = 'holiday' if HolidayJapan.check(date)
+                css_class = "#{css_class} current-day" if date == Date.current
+              %>
+              <tr class="<%= css_class %>">
+                <td><%= date.strftime('%m/%d') %></td>
+                <td><%= @days_of_the_week[date.wday] %></td>
+                <td>
+                  <% if date == Date.current %>
+                    <%= link_to work_out_user_path(@user, date: date), 
+                        class: "btn btn-menu w-100" do %>
+                      メニュー
+                    <% end %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if date == Date.current %>
+                    <%= link_to muscle_parts_page_user_path(@user, date: date),
+                        class: "btn btn-menu w-100" do %>
+                      一覧表示/追加
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

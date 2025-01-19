@@ -1,0 +1,3 @@
+class UserTrainingMenu < ApplicationRecord
+  
+end

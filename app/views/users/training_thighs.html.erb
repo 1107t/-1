@@ -1,0 +1,18 @@
+<h1>【太もも】のトレーニング種目一覧</h1>
+<table class="table table-bordered table-condensed user-table">
+  <% if @users.present? %>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to 'メニュー一覧', training_thighs_modal_user_path(user), remote: true, data: { turbo_frame: 'modal' }, class: "btn btn-success" %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="1">ユーザーが見つかりません。</td>
+    </tr>
+  <% end %>
+</table>
+
+<div id="training_thighs_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

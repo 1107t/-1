@@ -1,0 +1,91 @@
+<% provide(:title, "login") %>
+<h1>ログイン</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(scope: :session, url: login_path, local: true) do |f| %>
+
+      <%= f.label :email, "メールアドレス", class: "label-login" %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password, "パスワード", class: "label-login" %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :remember_me, class: "checkbox inline checkbox-login", for: "remember-me" do %>
+        <%= f.check_box :remember_me, id: "remember-me" %>
+        <span>ログイン情報を記憶する</span>
+      <% end %>
+
+      <%= f.submit "ログイン", class: "btn btn-primary btn-block btn-login" %>
+    <% end %>
+
+    <div class="oauth-login-buttons">
+      <div class="separator">
+        <span>または</span>
+      </div>
+      
+      <div class="text-center">
+        <%= button_to "Googleでログイン", "/auth/google_oauth2", method: :post, class: "btn btn-warning btn-block btn-login"  %><br>
+      </div>
+    </div>
+
+    <p class="signup-link">
+      ユーザー登録がまだの場合は<%= link_to "こちら", signup_path %>
+    </p>
+  </div>
+</div>
+
+<style>
+.oauth-login-buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+}
+
+.separator span {
+  padding: 0 10px;
+  color: #666;
+  font-size: 14px;
+}
+
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: #444;
+  padding: 10px;
+  transition: background-color 0.3s;
+  margin: 10px auto;
+  width: 100%;
+}
+
+.btn-google:hover {
+  background-color: #f8f9fa;
+}
+
+.google-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+}
+
+.signup-link {
+  margin-top: 20px;
+  text-align: center;
+}
+</style>

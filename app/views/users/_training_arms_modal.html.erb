@@ -1,0 +1,99 @@
+<% provide(:class_text, 'basic-info') %>
+<% provide(:button_text, '登録') %>
+
+<style>
+.modal-dialog {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 !important;
+}
+
+.modal-dialog-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #dee2e6;
+  position: relative;
+}
+
+.modal-body {
+  padding: 1.5rem;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.col-md-6 {
+  width: 100%;
+  max-width: 500px;
+}
+
+@media (max-width: 768px) {
+  .modal-dialog {
+    width: calc(100% - 2rem);
+    margin: 1rem !important;
+  }
+}
+</style>
+
+<%= turbo_frame_tag 'modal' do %>
+  <div class="modal-dialog modal-lg modal-dialog-center" data-controller="update_abs_modal">
+    <!-- 既存のコードをそのまま使用 -->
+  </div>
+<% end %>
+
+<%= turbo_frame_tag 'modal' do %>
+  <div class="modal-dialog modal-lg modal-dialog-center" data-controller="edit-basic-info">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-action="edit-basic-info#close" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h1 class="modal-title">メニュー一覧【腕】</h1>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <%= form_with(model: @user, url: update_arms_modal_user_path(@user), local: false, method: :patch, data: { action: "submit->edit-basic-info#submit" }) do |f| %> 
+              <%= render 'shared/error_messages', object: @user %>
+  
+              <%= f.label :名前, class: "label-#{yield(:class_text)}" %>
+              <p><%= @user.name %></p>
+          
+             
+              <%= f.label :トレーニングメニュー, class: "label-#{yield(:class_text)}" %>
+              <%= f.select :arms, [["イージーバーカール", "イージーバーカール"], ["インクラインカール", "インクラインカール"], ["バイセプスカール", "バイセプスカール"], ["フラットベンチ・ナロウプレス", "フラットベンチ・ナロウプレス"]], include_blank: "選択して下さい" %>
+  
+  
+              <div class="center">
+                <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>
+                <button type="button" class="btn btn-default btn-<%= yield(:class_text) %>" data-action="edit-basic-info#close">
+                  キャンセル
+                </button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
