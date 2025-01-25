@@ -63,4 +63,6 @@ Rails.application.configure do
   config.assets.quiet = true
 
   config.assets.precompile += %w( tailwind.css )
+
+  config.require_master_key = false
 end

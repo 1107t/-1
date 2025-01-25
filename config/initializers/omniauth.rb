@@ -1,7 +1,8 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :google_oauth2,
-           ENV['GOOGLE_CLIENT_ID'],
-           ENV['GOOGLE_CLIENT_SECRET']
+           '699253221267-fj48an58lh5g3tgi4ud19pioh0hfiggl.apps.googleusercontent.com',
+           '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'
            
 end
+
 

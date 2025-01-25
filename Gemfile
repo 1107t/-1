@@ -40,6 +40,8 @@ gem 'omniauth-rails_csrf_protection'
 gem 'dotenv-rails'
 gem 'tailwindcss-rails'
 gem 'uglifier'
+gem 'faker'
+gem 'terser'
 
 
 # Use Capistrano for deployment
