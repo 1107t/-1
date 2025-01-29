@@ -6,7 +6,15 @@
 
 # Ignore bundler config.
 /.bundle
-
+.env
+.env.*
+*.pem
+*.key
+config/credentials.json
+config/master.key
+config/secrets.*
+heroku/
+node_modules/
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
