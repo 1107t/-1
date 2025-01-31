@@ -46,9 +46,9 @@ gem 'uglifier'
 gem 'faker'
 gem 'terser'
 
-gem 'ffi', '~> 1.15.0'
 
-# Use Capistrano for deployment
+
+gem 'ffi', '1.15.5'  
 # gem 'capistrano-rails', group: :development
 gem 'will_paginate', '~> 3.3' # この行を追加してください。
 gem 'bootstrap-will_paginate', '1.0.0' # この行を追加してください。

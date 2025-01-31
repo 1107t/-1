@@ -366,7 +366,7 @@ DEPENDENCIES
   dockerfile-rails (>= 1.7)
   dotenv-rails
   faker
-  ffi (~> 1.15.0)
+  ffi (= 1.15.5)
   holiday_japan
   importmap-rails (~> 2.0)
   jbuilder (~> 2.5)
