@@ -46,7 +46,7 @@ gem 'uglifier'
 gem 'faker'
 gem 'terser'
 
-
+gem 'ffi', '~> 1.15.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
