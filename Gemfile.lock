@@ -130,7 +130,7 @@ GEM
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
-    ffi (1.17.1-x86_64-linux-gnu)
+    ffi (1.15.5)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (5.0.0)
@@ -366,6 +366,7 @@ DEPENDENCIES
   dockerfile-rails (>= 1.7)
   dotenv-rails
   faker
+  ffi (~> 1.15.0)
   holiday_japan
   importmap-rails (~> 2.0)
   jbuilder (~> 2.5)
