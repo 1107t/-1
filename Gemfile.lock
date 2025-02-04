@@ -376,7 +376,7 @@ DEPENDENCIES
   omniauth (= 2.1.0)
   omniauth-google-oauth2 (= 1.1.1)
   omniauth-rails_csrf_protection
-  pg (~> 1.5)
+  pg
   puma (~> 3.7)
   rails (~> 7.0)
   rails-i18n
