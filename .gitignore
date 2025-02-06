@@ -40,3 +40,4 @@ node_modules/
 .env
 heroku/bin/*
 *.sqlite3-*
+*.sqlite3-*
