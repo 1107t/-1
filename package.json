@@ -1,6 +1,10 @@
 {
   "name": "muscle",
   "private": true,
+  "engines": {
+    "node": "22.11.0",
+    "yarn": "1.22.22"
+  },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@rails/actioncable": "^6.0.0",
