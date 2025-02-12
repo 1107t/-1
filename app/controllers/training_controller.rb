@@ -118,3 +118,4 @@ class TrainingController < ApplicationController
       render :edit  # 失敗時にエラーメッセージを表示
     end
   end
+end
