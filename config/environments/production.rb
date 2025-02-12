@@ -91,4 +91,7 @@ config.assets.compile = true
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # ローカルストレージを使う場合
+  config.active_storage.service = :local
 end
