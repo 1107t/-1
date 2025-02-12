@@ -1,4 +1,5 @@
-def training_abs
+class TrainingController < ApplicationController
+  def training_abs
     @users = User.all
   end
   
