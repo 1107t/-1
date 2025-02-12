@@ -10,7 +10,7 @@ Rails.application.configure do
   config.server_timing = true
 
   # Credentials の master key を必須にする
-  config.require_master_key = true
+  config.require_master_key = false
 
   # ホストの許可
   config.hosts << "localhost"
@@ -62,7 +62,12 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  config.assets.precompile += %w( tailwind.css )
+  config.assets.compile = true # 動的にコンパイルを許可する
+  config.assets.precompile += %w( bootstrap/dist/js/bootstrap.js ) # 必要なアセットを追加
+
+  config.assets.digest = true
+
+
 
   config.require_master_key = false
 end

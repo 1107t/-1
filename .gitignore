@@ -43,3 +43,5 @@ heroku/bin/*
 *.sqlite3-*
 
 /public/assets/*
+
+/vendor
