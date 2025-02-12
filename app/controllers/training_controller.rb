@@ -1,4 +1,5 @@
-def training_abs
+class TrainingController < ApplicationController
+  def training_abs
     @users = User.all
   end
   
@@ -117,3 +118,4 @@ def training_abs
       render :edit  # 失敗時にエラーメッセージを表示
     end
   end
+end

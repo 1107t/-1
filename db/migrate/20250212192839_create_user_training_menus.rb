@@ -1,4 +1,4 @@
-class CreateUserTrainingMenus < ActiveRecord::Migration[7.1]
+class CreateUserTrainingMenus < ActiveRecord::Migration[7.2]
   def change
     create_table :user_training_menus do |t|
       t.references :user, null: false, foreign_key: true
