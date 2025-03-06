@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # ログイン機能
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
   delete '/logout', to: 'sessions#destroy'
 
   # Google OAuth
@@ -39,29 +40,27 @@ Rails.application.routes.draw do
       patch 'muscle_parts_page'
 
       # 部位別トレーニングページ
-    
-        # モーダル表示・更新
-        get 'training_arms_modal'
-        patch 'update_arms_modal'
-        get 'training_abs_modal'
-        patch 'update_abs_modal'
-        get 'training_back_modal'
-        patch 'update_back_modal'
-        get 'training_chest_modal'
-        patch 'update_chest_modal'
-        get 'training_shoulder_modal'
-        patch 'update_shoulder_modal'
-        get 'training_thighs_modal'
-        patch 'update_thighs_modal'
+      # 以下のトレーニング関連ルートをTrainingControllerに変更
+      get 'training_arms_modal', to: 'training#training_arms_modal'
+      patch 'update_arms_modal', to: 'training#update_arms_modal'
+      get 'training_abs_modal', to: 'training#training_abs_modal'
+      patch 'update_abs_modal', to: 'training#update_abs_modal'
+      get 'training_back_modal', to: 'training#training_back_modal'
+      patch 'update_back_modal', to: 'training#update_back_modal'
+      get 'training_chest_modal', to: 'training#training_chest_modal'
+      patch 'update_chest_modal', to: 'training#update_chest_modal'
+      get 'training_shoulder_modal', to: 'training#training_shoulder_modal'
+      patch 'update_shoulder_modal', to: 'training#update_shoulder_modal'
+      get 'training_thighs_modal', to: 'training#training_thighs_modal'
+      patch 'update_thighs_modal', to: 'training#update_thighs_modal'
 
-        # トレーニング一覧ページ
-        get 'workout_menu'
-        get 'training_abs'
-        get 'training_chest'
-        get 'training_arms'
-        get 'training_thighs'
-        get 'training_shoulder'
-        get 'training_back'
+      # トレーニング一覧ページもTrainingControllerに変更
+      get 'training_abs', to: 'training#training_abs'
+      get 'training_chest', to: 'training#training_chest'
+      get 'training_arms', to: 'training#training_arms'
+      get 'training_thighs', to: 'training#training_thighs'
+      get 'training_shoulder', to: 'training#training_shoulder'
+      get 'training_back', to: 'training#training_back'
       
     end
     resources :training_histories

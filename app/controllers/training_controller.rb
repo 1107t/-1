@@ -1,5 +1,5 @@
 
-class Training_Controller < ApplicationController
+class TrainingController < ApplicationController
 
     def training_abs
       @users = User.all
@@ -125,6 +125,18 @@ class Training_Controller < ApplicationController
       end
     end  
 
+
+
+    private
+
+    def user_params
+      # 許可するパラメータを指定
+      params.require(:user).permit(
+        :name, :email, 
+        :abs, :arms, :back, :chest, :shoulder, :thighs,
+        # 他に必要なパラメータがあれば追加
+      )
+    end
 
 end
 
