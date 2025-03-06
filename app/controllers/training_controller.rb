@@ -1,3 +1,4 @@
+
 class Training_Controller < ApplicationController
 
     def training_abs
@@ -39,6 +40,9 @@ class Training_Controller < ApplicationController
         render :edit  # 失敗時にエラーメッセージを表示
       end
     end
+
+
+
   
     def training_back
       @users = User.all
@@ -108,6 +112,7 @@ class Training_Controller < ApplicationController
       @user = User.find(params[:id])
     end
 
+
     def update_thighs_modal
       @user = User.find(params[:id])
       puts params[:user][:thighs]
@@ -119,4 +124,8 @@ class Training_Controller < ApplicationController
         render :edit  # 失敗時にエラーメッセージを表示
       end
     end  
+
+
 end
+
+
