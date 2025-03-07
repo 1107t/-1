@@ -9,9 +9,9 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
-config.assets.initialize_on_precompile = false
-config.serve_static_files = true
-config.assets.compile = true
+  config.assets.initialize_on_precompile = false
+  config.serve_static_files = true
+  config.assets.compile = false
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -30,7 +30,7 @@ config.assets.compile = true
   config.assets.css_compressor = :sass
   config.assets.js_compressor = :terser
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
+  
   config.assets.digest = true
 # config/environments/production.rb に以下を追加
   config.assets.initialize_on_precompile = false
