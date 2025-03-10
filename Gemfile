@@ -42,7 +42,7 @@ gem 'uglifier'
 gem 'faker'
 gem 'terser'
 #2025/3/10追加
-gem 'pg'
+gem "pg", "~> 1.5"
 
 
 # Use Capistrano for deployment
