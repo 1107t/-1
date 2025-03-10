@@ -1,12 +1,16 @@
-<div class="center jumbotron">
-  <h1>筋肉トレーニングシステム</h1>
-  <p>日々の鍛錬無くして筋肉の向上無し!!</p>
-  <p>筋肉は君を裏切らない</p>
+<div class="center jumbotron" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+  <h1 style="text-align: center; width: 100%;">筋肉トレーニングシステム</h1>
+  <p style="text-align: center; width: 100%;">日々の鍛錬無くして筋肉の向上無し!!</p>
+  <p style="text-align: center; width: 100%;">筋肉は君を裏切らない</p>
   
-  <% if logged_in? %>
-    <%= link_to "プロフィール", current_user, class: "btn btn-lg btn-primary" %>
-  <% else %>
-    <%= link_to "新規登録", signup_path, class: "btn btn-lg btn-primary" %>
-    <%= button_to "Googleでログイン", "/auth/google_oauth2", method: :post, class: "btn btn-warning btn-block btn-login" %>
-  <% end %>
+  <div style="margin: 0 auto; text-align: center;">
+    <% if logged_in? %>
+      <%= link_to "プロフィール", current_user, class: "btn btn-lg btn-primary", style: "margin: 0 auto; display: inline-block;" %>
+    <% else %>
+      <%= link_to "新規登録", signup_path, class: "btn btn-lg btn-primary", style: "margin: 0 auto; display: inline-block;" %>
+      <div style="margin: 1rem auto; width: 250px;">
+        <%= button_to "Googleでログイン", "/auth/google_oauth2", method: :post, class: "btn btn-warning btn-block btn-login" %>
+      </div>
+    <% end %>
+  </div>
 </div>
