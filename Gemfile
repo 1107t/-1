@@ -41,6 +41,8 @@ gem 'dotenv-rails'
 gem 'uglifier'
 gem 'faker'
 gem 'terser'
+#2025/3/10追加
+gem 'pg'
 
 
 # Use Capistrano for deployment
