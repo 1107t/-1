@@ -39,3 +39,9 @@ node_modules/
 /config/master.key
 .env
 heroku/bin/*
+*.sqlite3-*
+*.sqlite3-*
+
+/public/assets/*
+
+/vendor

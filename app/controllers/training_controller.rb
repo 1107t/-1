@@ -1,4 +1,5 @@
 class TrainingController < ApplicationController
+
   def training_abs
     @users = User.all
   end
@@ -38,7 +39,7 @@ class TrainingController < ApplicationController
       render :edit  # 失敗時にエラーメッセージを表示
     end
   end
- 
+  
   def training_back
     @users = User.all
   end 
@@ -117,5 +118,17 @@ class TrainingController < ApplicationController
       flash[:error] = "トレーニングメニューを登録に失敗しました。"
       render :edit  # 失敗時にエラーメッセージを表示
     end
+  end  
+
+  private
+
+  def user_params
+    # 許可するパラメータを指定
+    params.require(:user).permit(
+      :name, :email, 
+      :abs, :arms, :back, :chest, :shoulder, :thighs,
+      # 他に必要なパラメータがあれば追加
+    )
   end
+
 end
